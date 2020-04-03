@@ -1,7 +1,9 @@
 package com.graduationproject
 
 import com.chatApp.Data.AppDataBase
+import com.graduationproject.Repository.AdminRepository
 import com.graduationproject.Repository.LoginRepository
+import com.graduationproject.ViewModelFactory.AdminViewModelFactory
 import com.graduationproject.ViewModelFactory.LoginViewModelFactory
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
@@ -14,18 +16,7 @@ val appModules = module {
 
      factory { LoginViewModelFactory(androidApplication()) }
 
-//     single {AppDataBase.invoke(androidApplication()).getUserDao()}
-//
-//     factory { (dao : Dao, id : String ) -> ChatRepository(dao,id) }
+     single {AdminRepository(get()) }
 
-//     factory { ChatViewModelFactory(androidApplication()) }
-//
-//     single { ChatListRepository(get()) }
-//
-//     single { ConnectionsListRepository(get()) }
-//
-//     factory { ChatListViewModelFactory(androidApplication()) }
-//
-//     factory { ConnectionsListViewModelFactory(androidApplication()) }
-
+     factory { AdminViewModelFactory(androidApplication()) }
 }

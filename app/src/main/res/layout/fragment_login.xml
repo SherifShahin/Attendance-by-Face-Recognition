@@ -31,7 +31,7 @@
             android:layout_margin="5dp"
             android:hint="email"
             app:errorEnabled="true"
-            app:helperText="age"
+            app:helperText="example@example.com"
             app:helperTextEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
