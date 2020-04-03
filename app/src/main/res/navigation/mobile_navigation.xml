@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.graduationproject.Fragment.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/moderatorDestination"
+            app:destination="@id/moderatorHome"
+            app:popUpTo="@+id/mobile_navigation"
+            app:popUpToInclusive="true"
+            />
+        <action
+            android:id="@+id/adminDestination"
+            app:destination="@id/adminHome"
+            app:popUpTo="@+id/mobile_navigation"
+            app:popUpToInclusive="true"
+            />
+        <action
+            android:id="@+id/DoctorDestination"
+            app:destination="@id/doctorHome"
+            app:popUpTo="@+id/mobile_navigation"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/adminHome"
+        android:name="com.graduationproject.Fragment.AdminHome"
+        android:label="fragment_admin_home"
+        tools:layout="@layout/fragment_admin_home" />
+    <fragment
+        android:id="@+id/doctorHome"
+        android:name="com.graduationproject.Fragment.DoctorHome"
+        android:label="fragment_doctor_home"
+        tools:layout="@layout/fragment_doctor_home" />
+    <fragment
+        android:id="@+id/moderatorHome"
+        android:name="com.graduationproject.Fragment.ModeratorHome"
+        android:label="fragment_moderator_home"
+        tools:layout="@layout/fragment_moderator_home" />
+</navigation>
