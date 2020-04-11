@@ -2,7 +2,7 @@ package com.graduationproject.Repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.chatApp.Dao.Dao
+import com.graduationproject.Dao.Dao
 
 import com.graduationproject.Data.Api
 import com.graduationproject.DatabaseModel.DoctorGroups
@@ -51,6 +51,8 @@ class DoctorHomeRepository(val dao: Dao)
     private fun insertGroups(groups : List<DoctorGroupsResponse>?)
     {
         CoroutineScope(Dispatchers.IO).launch {
+
+            dao.deleteRelations()
 
             groups?.forEach {
 

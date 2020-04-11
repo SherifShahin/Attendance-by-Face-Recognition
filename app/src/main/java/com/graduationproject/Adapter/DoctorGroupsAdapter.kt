@@ -1,13 +1,17 @@
 package com.graduationproject.Adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.graduationproject.DatabaseModel.DoctorGroups
+import com.graduationproject.Fragment.DoctorHomeDirections
 import com.graduationproject.R
+
 
 
 class DoctorGroupsAdapter(var context: Context
@@ -16,9 +20,7 @@ class DoctorGroupsAdapter(var context: Context
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupsViewHolder
     {
-        val view: View
-
-        view = LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.doctor_group_item, parent, false)
         return GroupsViewHolder(view)
     }
@@ -27,7 +29,7 @@ class DoctorGroupsAdapter(var context: Context
 
         val group = list.get(position)
 
-        holder.bind(group)
+        holder.bind(group )
     }
 
     override fun getItemCount(): Int
@@ -39,19 +41,15 @@ class DoctorGroupsAdapter(var context: Context
 
         var groupName : TextView = itemView.findViewById(R.id.doctor_group_item_name)
 
-
         fun bind(group : DoctorGroups)
         {
             groupName.setText(group.groupName)
 
-//            itemView.setOnClickListener{ view ->
-//
-//                val action = ChatListDirections.chatDestination(Connections(chat.googleId,chatUsername.text.toString()
-//                    ,profileImage,"","offline"))
-//
-//                view.findNavController().navigate(action)
-//            }
-        }
+            itemView.setOnClickListener{ view ->
+                val action = DoctorHomeDirections.doctorGroupStudents(group.groupId ,group.groupName)
 
+                view.findNavController().navigate(action)
+                }
+        }
     }
 }

@@ -38,10 +38,28 @@
         android:id="@+id/doctorHome"
         android:name="com.graduationproject.Fragment.DoctorHome"
         android:label="fragment_doctor_home"
-        tools:layout="@layout/fragment_doctor_home" />
+        tools:layout="@layout/fragment_doctor_home" >
+        <action
+            android:id="@+id/doctorGroupStudents"
+            app:destination="@+id/doctorGroupStudents" />
+    </fragment>
     <fragment
         android:id="@+id/moderatorHome"
         android:name="com.graduationproject.Fragment.ModeratorHome"
         android:label="fragment_moderator_home"
         tools:layout="@layout/fragment_moderator_home" />
+    <fragment
+        android:id="@+id/doctorGroupStudents"
+        android:name="com.graduationproject.Fragment.DoctorGroupStudents"
+        android:label="doctor_group_students_fragment"
+        tools:layout="@layout/doctor_group_students_fragment" >
+        <argument
+            android:name="groupid"
+            app:argType="string"
+            android:defaultValue='default' />
+        <argument
+            android:name="groupname"
+            app:argType="string"
+            android:defaultValue='default' />
+    </fragment>
 </navigation>

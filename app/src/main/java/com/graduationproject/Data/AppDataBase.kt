@@ -1,10 +1,10 @@
-package com.chatApp.Data
+package com.com.graduationproject.Data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.chatApp.Dao.Dao
+import com.graduationproject.Dao.Dao
 import com.graduationproject.DatabaseModel.DoctorGroups
 import com.graduationproject.DatabaseModel.DoctorGroupsStudentsRelation
 import com.graduationproject.DatabaseModel.DoctorStudents
@@ -15,7 +15,7 @@ import com.graduationproject.DatabaseModel.User
     ,DoctorGroups::class ,
     DoctorStudents::class ,
     DoctorGroupsStudentsRelation::class],
-    version = 3
+    version = 4
     ,exportSchema = false)
 
 abstract class AppDataBase : RoomDatabase()

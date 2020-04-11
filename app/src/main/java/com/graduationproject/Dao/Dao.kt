@@ -1,4 +1,4 @@
-package com.chatApp.Dao
+package com.graduationproject.Dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -32,8 +32,12 @@ interface Dao
     @Query("SELECT * FROM DoctorGroups")
     fun getDoctorGroup() : LiveData<List<DoctorGroups>>
 
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun setDoctorStudent(student : DoctorStudents , relation : DoctorGroupsStudentsRelation)
 
+    @Query("SELECT * FROM DoctorStudents NATURAL JOIN (SELECT student_id FROM DOCTORGROUPSSTUDENTSRELATION WHERE group_id = :id)")
+    fun getGroupStudents(id : String) : LiveData<List<DoctorStudents>>
+
+    @Query("DELETE FROM DOCTORGROUPSSTUDENTSRELATION")
+    fun deleteRelations()
 }

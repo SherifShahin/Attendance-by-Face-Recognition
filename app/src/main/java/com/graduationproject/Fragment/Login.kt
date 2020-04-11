@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
-import com.chatApp.Dao.Dao
+import com.graduationproject.Dao.Dao
 import com.graduationproject.Model.LoginModel
 import com.graduationproject.R
 import com.graduationproject.ViewModel.LoginViewModel
@@ -36,15 +36,10 @@ class Login : Fragment()
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
+            checkLogin()
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
-
-    override fun onStart() {
-        super.onStart()
-        checkLogin()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -152,5 +147,4 @@ class Login : Fragment()
             }
         }
     }
-
 }
