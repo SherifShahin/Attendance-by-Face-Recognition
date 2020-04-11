@@ -37,11 +37,14 @@ class Login : Fragment()
     ): View? {
         // Inflate the layout for this fragment
 
-        checkLogin()
-
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
+
+    override fun onStart() {
+        super.onStart()
+        checkLogin()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -142,7 +145,7 @@ class Login : Fragment()
                     it.token?.let {
 
                         if (!it.isEmpty()) {
-                            GoToDestination(role)
+                            GoToDestination(user.role)
                         }
                     }
                 }

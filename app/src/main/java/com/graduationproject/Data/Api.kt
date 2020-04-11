@@ -1,6 +1,7 @@
 package com.graduationproject.Data
 
 import com.graduationproject.Model.AdminRegisterModel
+import com.graduationproject.Model.DoctorGroupsResponse
 import com.graduationproject.Model.LoginModel
 import com.graduationproject.Model.LoginResponse
 import okhttp3.ResponseBody
@@ -16,6 +17,7 @@ interface Api
         @Body user :  LoginModel
     ) : Call<LoginResponse>
 
+
     @POST("user/register/{role}")
     fun AdminRegister(
         @Header("Authorization") header : String,
@@ -23,10 +25,16 @@ interface Api
         @Path("role") role : String
     ) : Call<ResponseBody>
 
+
+    @GET("group")
+    fun getDoctorGroups(
+        @Header("Authorization") header : String
+    ) : Call<List<DoctorGroupsResponse>>
+
     companion object  {
         operator fun invoke() : Api{
             return  Retrofit.Builder()
-                .baseUrl("http://8b9209a7.ngrok.io/api/")
+                .baseUrl("https://face-recognition-gp.herokuapp.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(Api::class.java)

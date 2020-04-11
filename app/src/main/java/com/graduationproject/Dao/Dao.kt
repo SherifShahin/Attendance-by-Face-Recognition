@@ -1,9 +1,13 @@
 package com.chatApp.Dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.graduationproject.DatabaseModel.DoctorGroups
+import com.graduationproject.DatabaseModel.DoctorGroupsStudentsRelation
+import com.graduationproject.DatabaseModel.DoctorStudents
 import com.graduationproject.DatabaseModel.User
 
 
@@ -17,6 +21,19 @@ interface Dao
     @Query("SELECT * FROM user")
     fun getUser() : User
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun setDoctorGroup(group : DoctorGroups)
 
+
+    @Query("SELECT * FROM DoctorGroups WHERE group_id = :id")
+    fun getDoctorGroup(id : String) : DoctorGroups
+
+
+    @Query("SELECT * FROM DoctorGroups")
+    fun getDoctorGroup() : LiveData<List<DoctorGroups>>
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun setDoctorStudent(student : DoctorStudents , relation : DoctorGroupsStudentsRelation)
 
 }
