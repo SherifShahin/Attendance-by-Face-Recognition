@@ -61,5 +61,22 @@
             android:name="groupname"
             app:argType="string"
             android:defaultValue='default' />
+        <action
+            android:id="@+id/doctorGroupAddStudentDestination"
+            app:destination="@id/doctorGroupAddStudent2" />
+
     </fragment>
+    <fragment
+        android:id="@+id/doctorGroupAddStudent2"
+        android:name="com.graduationproject.Fragment.DoctorGroupAddStudent"
+        android:label="doctor_group_add_student_fragment"
+        tools:layout="@layout/doctor_group_add_student_fragment" >
+
+        <argument
+            android:name="gpid"
+            app:argType="string"
+            android:defaultValue='default' />
+
+    </fragment>
+
 </navigation>

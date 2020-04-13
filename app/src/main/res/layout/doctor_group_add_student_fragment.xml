@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.DoctorGroupAddStudent"
+    android:background="@android:color/white"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/doctor_group_add_student_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        >
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.miguelcatalan.materialsearchview.MaterialSearchView
+        android:id="@+id/doctor_group_add_student_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="connections search"
+        android:textColor="@android:color/white"
+        app:searchBackground="@color/colorPrimary"
+        android:textColorHint="#BDBDBD"
+        app:searchBackIcon="@drawable/ic_action_navigation_arrow_back_inverted"
+        app:searchCloseIcon="@drawable/ic_action_navigation_close_inverted"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/doctor_group_add_student_recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doctor_group_add_student_toolbar"
+        android:layout_marginTop="2dp"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+</RelativeLayout>

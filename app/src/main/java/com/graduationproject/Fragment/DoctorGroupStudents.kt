@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.graduationproject.Adapter.DoctorGroupStudentAdapter
 
@@ -42,7 +44,6 @@ class DoctorGroupStudents : Fragment() {
 
         model.init(groupId!!)
 
-
         model.getStudents().observe(viewLifecycleOwner , Observer {
 
             val adapter = DoctorGroupStudentAdapter(context!! , it)
@@ -53,7 +54,27 @@ class DoctorGroupStudents : Fragment() {
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
             doctor_group_student_recycleview.layoutManager = layoutManager
-
         })
+
+        doctorgroupstudents_toolbar.setOnMenuItemClickListener {
+            when(it.itemId)
+            {
+                R.id.doctor_add_student -> {
+
+                    GoToAddDestination(groupId)
+
+                    true
+                }
+                else -> false
+            }
+        }
     }
+
+    fun GoToAddDestination(groupid : String)
+    {
+        val action = DoctorGroupStudentsDirections.doctorGroupAddStudentDestination(groupid)
+
+        findNavController(this).navigate(action)
+    }
+
 }

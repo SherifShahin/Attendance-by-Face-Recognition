@@ -1,9 +1,6 @@
 package com.graduationproject.Data
 
-import com.graduationproject.Model.AdminRegisterModel
-import com.graduationproject.Model.DoctorGroupsResponse
-import com.graduationproject.Model.LoginModel
-import com.graduationproject.Model.LoginResponse
+import com.graduationproject.Model.*
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -30,6 +27,21 @@ interface Api
     fun getDoctorGroups(
         @Header("Authorization") header : String
     ) : Call<List<DoctorGroupsResponse>>
+
+
+    @GET("/api/student/search")
+    fun getStudents(
+        @Header("Authorization") header : String,
+        @Query("name") name : String
+    )  : Call<List<DoctorStudentsSearchResponse>>
+
+
+    @POST("group/{groupId}/add")
+    fun addStudentToGroup(
+        @Header("Authorization") header : String,
+        @Body studentId : AddStudentModel ,
+        @Path("groupId") groupId : String
+    ) : Call<ResponseBody>
 
     companion object  {
         operator fun invoke() : Api{
