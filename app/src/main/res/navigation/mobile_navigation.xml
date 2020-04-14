@@ -42,6 +42,9 @@
         <action
             android:id="@+id/doctorGroupStudents"
             app:destination="@+id/doctorGroupStudents" />
+        <action
+            android:id="@+id/doctorAddGroupDestination"
+            app:destination="@id/doctorAddGroup" />
     </fragment>
     <fragment
         android:id="@+id/moderatorHome"
@@ -78,5 +81,10 @@
             android:defaultValue='default' />
 
     </fragment>
+    <fragment
+        android:id="@+id/doctorAddGroup"
+        android:name="com.graduationproject.Fragment.DoctorAddGroup"
+        android:label="doctor_add_group_fragment"
+        tools:layout="@layout/doctor_add_group_fragment" />
 
 </navigation>

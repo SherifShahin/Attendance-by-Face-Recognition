@@ -43,6 +43,14 @@ interface Api
         @Path("groupId") groupId : String
     ) : Call<ResponseBody>
 
+
+    @POST("group/new")
+    fun DoctorAddGroup(
+        @Header("Authorization") header : String,
+        @Body groupName : DoctorAddGroupModel
+    ) : Call<ResponseBody>
+
+
     companion object  {
         operator fun invoke() : Api{
             return  Retrofit.Builder()

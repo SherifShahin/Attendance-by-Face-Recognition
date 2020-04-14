@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.graduationproject.Adapter.DoctorGroupsAdapter
 
@@ -58,7 +59,7 @@ class DoctorHome : Fragment() {
             when(it.itemId)
             {
                 R.id.doctor_add_group -> {
-                    Toast.makeText(context!!, "add", Toast.LENGTH_LONG).show()
+                    GoToAddDestination()
                     true
                 }
                 else -> false
@@ -66,5 +67,13 @@ class DoctorHome : Fragment() {
         }
 
     }
+
+    fun GoToAddDestination()
+    {
+        val action = DoctorHomeDirections.doctorAddGroupDestination()
+
+        findNavController(this).navigate(action)
+    }
+
 
 }

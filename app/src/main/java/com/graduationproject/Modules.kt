@@ -30,4 +30,8 @@ val appModules = module {
      single { DoctorGroupAddStudentRepository(get()) }
 
      factory { DoctorGroupAddStudentViewModelFactory(androidApplication())}
+
+     factory { DoctorAddGroupRepository(get()) }
+
+     factory { DoctorAddGroupViewModelFactory(androidApplication()) }
 }
