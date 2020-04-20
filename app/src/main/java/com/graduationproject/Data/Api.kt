@@ -51,6 +51,13 @@ interface Api
     ) : Call<ResponseBody>
 
 
+    @GET("/api/student/search")
+    fun ModeratorgetStudents(
+        @Header("Authorization") header : String,
+        @Query("name") name : String
+    )  : Call<List<ModeratorGetStudentsResponse>>
+
+
     companion object  {
         operator fun invoke() : Api{
             return  Retrofit.Builder()

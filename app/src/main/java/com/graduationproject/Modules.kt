@@ -34,4 +34,9 @@ val appModules = module {
      factory { DoctorAddGroupRepository(get()) }
 
      factory { DoctorAddGroupViewModelFactory(androidApplication()) }
+
+     single { ModeratorHomeRepository(get()) }
+
+     factory { ModeratorHomeViewModelFactory(androidApplication()) }
+
 }
