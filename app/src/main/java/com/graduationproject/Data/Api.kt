@@ -1,6 +1,8 @@
 package com.graduationproject.Data
 
 import com.graduationproject.Model.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -57,6 +59,15 @@ interface Api
         @Query("name") name : String
     )  : Call<List<ModeratorGetStudentsResponse>>
 
+    @Multipart
+    @POST("student/new")
+    fun uploadVideo(
+        @Header("Authorization") header : String ,
+        @Part("name") name: RequestBody,
+        @Part("email") email : RequestBody ,
+        @Part("department") department: RequestBody,
+        @Part video: MultipartBody.Part
+    ) : Call<ResponseBody>
 
     companion object  {
         operator fun invoke() : Api{

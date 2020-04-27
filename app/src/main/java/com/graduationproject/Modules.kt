@@ -39,4 +39,8 @@ val appModules = module {
 
      factory { ModeratorHomeViewModelFactory(androidApplication()) }
 
+     single { ModeratorAddStudentRepository(get())}
+
+     factory { ModeratorAddStudentViewModelFactory(androidApplication()) }
+
 }
