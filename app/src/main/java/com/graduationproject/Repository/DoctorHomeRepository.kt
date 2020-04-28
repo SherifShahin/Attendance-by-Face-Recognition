@@ -10,6 +10,7 @@ import com.graduationproject.DatabaseModel.DoctorGroupsStudentsRelation
 import com.graduationproject.DatabaseModel.DoctorStudents
 
 import com.graduationproject.Model.DoctorGroupsResponse
+import com.graduationproject.Model.DoctorStudentElement
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +57,7 @@ class DoctorHomeRepository(val dao: Dao)
 
             groups?.forEach {
 
-                val students: List<DoctorStudents> = it.students
+                val students: List<DoctorStudentElement> = it.students
 
                 val groupid = it.groupId
 
@@ -66,8 +67,8 @@ class DoctorHomeRepository(val dao: Dao)
 
                     it.forEach {
                         dao.setDoctorStudent(
-                            it,
-                            DoctorGroupsStudentsRelation(groupId = groupid, studentId = it._id)
+                            it.student,
+                            DoctorGroupsStudentsRelation(groupId = groupid, studentId = it.student._id)
                         )
                     }
                 }
