@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/doctor_add_student"
-        android:title="Add Student"
-        android:icon="@drawable/add_icon"
-        android:contentDescription="add new Student"
-        app:showAsAction="ifRoom"
+        android:id="@+id/doctor_edit_students"
+        android:title="Edit Student"
         />
 
+    <item
+        android:id="@+id/doctor_Attendance"
+        android:title="Attendance"
+        />
 
 </menu>

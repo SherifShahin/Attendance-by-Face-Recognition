@@ -59,22 +59,26 @@ class DoctorGroupStudents : Fragment() {
         doctorgroupstudents_toolbar.setOnMenuItemClickListener {
             when(it.itemId)
             {
-                R.id.doctor_add_student -> {
+                R.id.doctor_edit_students -> {
 
-                    GoToAddDestination(groupId)
+                    GoToEditDestination(groupId , groupname!!)
 
                     true
                 }
+
+                R.id.doctor_Attendance -> {
+                    false
+                }
+
                 else -> false
             }
         }
     }
 
-    fun GoToAddDestination(groupid : String)
+    fun GoToEditDestination(groupid : String , groupname : String)
     {
-        val action = DoctorGroupStudentsDirections.doctorGroupAddStudentDestination(groupid)
+        val action = DoctorGroupStudentsDirections.actionDoctorGroupStudentsToDoctorEditStudents(groupid , groupname)
 
         findNavController(this).navigate(action)
     }
-
 }

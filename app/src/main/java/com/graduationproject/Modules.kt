@@ -43,4 +43,7 @@ val appModules = module {
 
      factory { ModeratorAddStudentViewModelFactory(androidApplication()) }
 
+     factory{(dao : Dao, id : String ) -> DoctorEditStudentsRepository(dao,id)}
+
+     factory { DoctorEditStudentsViewModelFactory(androidApplication())}
 }

@@ -69,8 +69,8 @@
             app:argType="string"
             android:defaultValue='default' />
         <action
-            android:id="@+id/doctorGroupAddStudentDestination"
-            app:destination="@id/doctorGroupAddStudent2" />
+            android:id="@+id/action_doctorGroupStudents_to_doctorEditStudents"
+            app:destination="@id/doctorEditStudents" />
 
     </fragment>
     <fragment
@@ -95,5 +95,27 @@
         android:name="com.graduationproject.Fragment.ModeratorSetStudent"
         android:label="fragment_moderator_set_student"
         tools:layout="@layout/fragment_moderator_set_student" />
+
+
+    <fragment
+        android:id="@+id/doctorEditStudents"
+        android:name="com.graduationproject.Fragment.DoctorEditStudents"
+        android:label="doctor_edit_students_fragment"
+        tools:layout="@layout/doctor_edit_students_fragment">
+
+        <argument
+            android:name="groupid"
+            app:argType="string"
+            android:defaultValue='default' />
+        <argument
+            android:name="groupname"
+            app:argType="string"
+            android:defaultValue='default' />
+
+        <action
+            android:id="@+id/doctorGroupAddStudentDestination"
+            app:destination="@id/doctorGroupAddStudent2" />
+
+    </fragment>
 
 </navigation>
