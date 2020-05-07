@@ -69,6 +69,21 @@ interface Api
         @Part video: MultipartBody.Part
     ) : Call<ResponseBody>
 
+
+    @GET("group/{groupId}/attendance")
+    fun getDoctorGroupAttendance(
+        @Header("Authorization") header : String ,
+        @Path("groupId") groupId: String
+    ): Call<List<DoctorGroupAttendanceResponse>>
+
+
+    @POST("group/{groupId}/new-attendance-record")
+    fun setNewAttendance(
+        @Header("Authorization") header : String ,
+        @Path("groupId") groupId: String ,
+        @Body date : DoctorGroupNewAttendance
+    ) : Call<List<DoctorGroupAttendanceResponse>>
+
     companion object  {
         operator fun invoke() : Api{
             return  Retrofit.Builder()

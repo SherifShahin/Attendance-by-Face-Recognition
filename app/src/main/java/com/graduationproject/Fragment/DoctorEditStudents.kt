@@ -64,7 +64,6 @@ class DoctorEditStudents : Fragment() {
 
                 else -> false
             }
-
         }
 
     }

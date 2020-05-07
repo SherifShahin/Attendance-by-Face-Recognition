@@ -67,7 +67,8 @@ class DoctorGroupStudents : Fragment() {
                 }
 
                 R.id.doctor_Attendance -> {
-                    false
+                    GoToAttendanceDestination(groupId,groupname!!)
+                    true
                 }
 
                 else -> false
@@ -78,6 +79,13 @@ class DoctorGroupStudents : Fragment() {
     fun GoToEditDestination(groupid : String , groupname : String)
     {
         val action = DoctorGroupStudentsDirections.actionDoctorGroupStudentsToDoctorEditStudents(groupid , groupname)
+
+        findNavController(this).navigate(action)
+    }
+
+    fun GoToAttendanceDestination(groupid : String , groupname : String)
+    {
+        val action = DoctorGroupStudentsDirections.actionDoctorGroupStudentsToDoctorAttendance(groupid , groupname)
 
         findNavController(this).navigate(action)
     }

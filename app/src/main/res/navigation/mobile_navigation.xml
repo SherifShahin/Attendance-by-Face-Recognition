@@ -71,6 +71,9 @@
         <action
             android:id="@+id/action_doctorGroupStudents_to_doctorEditStudents"
             app:destination="@id/doctorEditStudents" />
+        <action
+            android:id="@+id/action_doctorGroupStudents_to_doctorAttendance"
+            app:destination="@id/doctorAttendance" />
 
     </fragment>
     <fragment
@@ -115,6 +118,22 @@
         <action
             android:id="@+id/doctorGroupAddStudentDestination"
             app:destination="@id/doctorGroupAddStudent2" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/doctorAttendance"
+        android:name="com.graduationproject.Fragment.DoctorGroupAttendance"
+        android:label="doctor_attendance_fragment"
+        tools:layout="@layout/doctor_group_attendance_fragment" >
+
+        <argument
+            android:name="groupid"
+            app:argType="string"
+            android:defaultValue='default' />
+        <argument
+            android:name="groupname"
+            app:argType="string"
+            android:defaultValue='default' />
 
     </fragment>
 
