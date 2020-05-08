@@ -13,6 +13,8 @@ class DoctorEditStudentsViewModel(application: Application) : AndroidViewModel(a
 
     private lateinit var students: LiveData<List<DoctorStudents>>
 
+    private lateinit var requestResult : LiveData<String>
+
     private val dao = application.get<Dao>()
 
     val app = application
@@ -23,7 +25,13 @@ class DoctorEditStudentsViewModel(application: Application) : AndroidViewModel(a
     {
         repository = app.get { parametersOf(dao,id) }
         students = repository.students
+        requestResult = repository.requestResult
     }
 
     fun getStudents() : LiveData<List<DoctorStudents>> = students
+    fun getRequestResult() : LiveData<String> = requestResult
+
+    fun done(groupId: String) {
+        repository.done(groupId)
+    }
 }

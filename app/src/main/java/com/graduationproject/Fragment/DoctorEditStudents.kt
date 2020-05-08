@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,7 +36,7 @@ class DoctorEditStudents : Fragment() {
 
         val groupname = arguments?.getString("groupname")
 
-        doctoreditstudent_toolbar.setTitle(groupname+" - Edit")
+        doctoreditstudent_toolbar.title = "$groupname - Edit"
 
         val factory = get<DoctorEditStudentsViewModelFactory>()
 
@@ -54,6 +55,13 @@ class DoctorEditStudents : Fragment() {
             doctoreditstudent_recyclerView.layoutManager = layoutManager
         })
 
+
+        viewModel.getRequestResult().observe(viewLifecycleOwner , Observer {
+            it?.let {
+                Toast.makeText(context!! , it , Toast.LENGTH_LONG).show()
+            }
+        })
+
         doctoreditstudent_toolbar.setOnMenuItemClickListener {
 
             when(it.itemId){
@@ -64,6 +72,11 @@ class DoctorEditStudents : Fragment() {
 
                 else -> false
             }
+        }
+
+        doctoreditstudent_button.setOnClickListener {
+            viewModel.done(groupId)
+            Toast.makeText(context!! ,"sending...", Toast.LENGTH_LONG).show()
         }
 
     }

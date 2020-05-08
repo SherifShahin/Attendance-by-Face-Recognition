@@ -99,6 +99,13 @@ interface Api
         @Path("attendanceId") attendanceId: String
     ) : Call<List<DoctorStudentsSearchResponse>>
 
+
+    @GET("group/{groupId}/done")
+    fun DoctorEditStudentsDone(
+        @Header("Authorization") header : String ,
+        @Path("groupId") groupId: String
+    ):Call<ResponseBody>
+
     companion object  {
         operator fun invoke() : Api{
             return  Retrofit.Builder()
