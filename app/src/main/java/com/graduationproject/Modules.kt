@@ -50,4 +50,9 @@ val appModules = module {
      factory{DoctorGroupAttendanceRepository(get())}
 
      factory { DoctorGroupAttendanceViewModelFactory(androidApplication())}
+
+     factory{DoctorGroupAttendanceDetailsRepository(get())}
+
+     factory { DoctorGroupAttendanceDetailsViewModelFactory(androidApplication())}
+
 }

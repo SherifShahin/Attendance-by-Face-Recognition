@@ -84,6 +84,21 @@ interface Api
         @Body date : DoctorGroupNewAttendance
     ) : Call<List<DoctorGroupAttendanceResponse>>
 
+
+    @GET("group/{groupId}/absent/{attendanceId}")
+    fun getGroupAbsent(
+        @Header("Authorization") header : String ,
+        @Path("groupId") groupId: String ,
+        @Path("attendanceId") attendanceId: String
+    ) : Call<List<DoctorStudentsSearchResponse>>
+
+    @GET("group/{groupId}/attendees/{attendanceId}")
+    fun getGroupAttendees(
+        @Header("Authorization") header : String ,
+        @Path("groupId") groupId: String ,
+        @Path("attendanceId") attendanceId: String
+    ) : Call<List<DoctorStudentsSearchResponse>>
+
     companion object  {
         operator fun invoke() : Api{
             return  Retrofit.Builder()

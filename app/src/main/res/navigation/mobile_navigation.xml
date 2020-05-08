@@ -134,7 +134,23 @@
             android:name="groupname"
             app:argType="string"
             android:defaultValue='default' />
+        <action
+            android:id="@+id/action_doctorAttendance_to_doctorGroupAttendanceDetails"
+            app:destination="@id/doctorGroupAttendanceDetails" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/doctorGroupAttendanceDetails"
+        android:name="com.graduationproject.Fragment.DoctorGroupAttendanceDetails"
+        android:label="doctor_group_attendance_details_fragment"
+        tools:layout="@layout/doctor_group_attendance_details_fragment" >
+
+        <argument
+            android:name="gpid"
+            app:argType="string" />
+        <argument
+            android:name="atncid"
+            app:argType="string" />
     </fragment>
 
 </navigation>

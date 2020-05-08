@@ -52,7 +52,7 @@ class DoctorGroupAttendance : Fragment() {
 
             doctor_Attendance_recyclerView.visibility = View.VISIBLE
 
-            val adapter = DoctorGroupAttendanceAdapter(context!! ,it)
+            val adapter = DoctorGroupAttendanceAdapter(context!! ,it , groupId)
 
             doctor_Attendance_recyclerView.adapter = adapter
 

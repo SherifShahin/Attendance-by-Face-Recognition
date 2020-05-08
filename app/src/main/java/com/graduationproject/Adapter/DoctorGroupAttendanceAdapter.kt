@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.graduationproject.Fragment.DoctorGroupAttendanceDirections
 import com.graduationproject.Model.DoctorGroupAttendanceResponse
 import com.graduationproject.R
 import java.text.SimpleDateFormat
@@ -13,7 +15,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class DoctorGroupAttendanceAdapter(var context: Context
-                                   , var list: List<DoctorGroupAttendanceResponse>)
+                                   , var list: List<DoctorGroupAttendanceResponse>
+                                   , val groupId : String
+)
     : RecyclerView.Adapter<DoctorGroupAttendanceAdapter.AttedanceViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttedanceViewHolder
@@ -27,7 +31,7 @@ class DoctorGroupAttendanceAdapter(var context: Context
 
         val attedance = list.get(position)
 
-        holder.bind(attedance)
+        holder.bind(attedance , groupId)
     }
 
     override fun getItemCount(): Int
@@ -39,11 +43,12 @@ class DoctorGroupAttendanceAdapter(var context: Context
 
         var attendanceName : TextView = itemView.findViewById(R.id.doctor_attendance_item_name)
 
-        fun bind(attendance : DoctorGroupAttendanceResponse)
+        fun bind(
+            attendance: DoctorGroupAttendanceResponse,
+            groupId: String
+        )
         {
             val date = attendance.date
-
-            //yyyy-mm-ddThh:MM:ssZ
 
             val df = SimpleDateFormat("dd/M/yyyy")
 
@@ -58,7 +63,11 @@ class DoctorGroupAttendanceAdapter(var context: Context
                 attendanceName.setText(date)
 
             itemView.setOnClickListener{ view ->
-                // navigate to attendance
+
+                val action = DoctorGroupAttendanceDirections
+                    .actionDoctorAttendanceToDoctorGroupAttendanceDetails(groupId ,attendance._id)
+
+                view.findNavController().navigate(action)
             }
         }
     }
