@@ -1,5 +1,9 @@
 package com.graduationproject.Repository
 
+import android.app.Application
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,13 +13,15 @@ import com.graduationproject.Dao.Dao
 import com.graduationproject.Data.Api
 import com.graduationproject.Model.DoctorStudentsSearchResponse
 import com.graduationproject.Model.ErrorResponse
+import com.graduationproject.Model.StudentAttendanceServiceModel
+import com.graduationproject.Service.StudentAttendanceService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 
-class DoctorGroupAttendanceDetailsRepository(val dao : Dao)
+class DoctorGroupAttendanceDetailsRepository(val dao : Dao ,val  application: Application)
 {
     private var _requestResult : MutableLiveData<String> = MutableLiveData()
     val requestResult : LiveData<String> = _requestResult
@@ -114,5 +120,19 @@ class DoctorGroupAttendanceDetailsRepository(val dao : Dao)
                 }
             })
         }
+    }
+
+    fun MakeStudentAttendance(imageuri : Uri , groupId: String , attendanceId: String)
+    {
+        Log.e("repository",imageuri.toString())
+        val StudentAttendance = StudentAttendanceServiceModel(imageuri , groupId, attendanceId)
+
+        val intent = Intent(application.applicationContext , StudentAttendanceService::class.java)
+
+        val b = Bundle()
+        b.putParcelable("studentAttendance", StudentAttendance)
+        intent.putExtras(b)
+
+        application.startService(intent)
     }
 }

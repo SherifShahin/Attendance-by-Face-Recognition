@@ -1,27 +1,36 @@
 package com.graduationproject.Fragment
 
-import androidx.lifecycle.ViewModelProviders
+import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.MediaStore
+import android.provider.MediaStore.Images
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.graduationproject.Adapter.DoctorGroupAttendanceDetailsAdapter
-
 import com.graduationproject.R
 import com.graduationproject.ViewModel.DoctorGroupAttendanceDetailsViewModel
 import com.graduationproject.ViewModelFactory.DoctorGroupAttendanceDetailsViewModelFactory
 import kotlinx.android.synthetic.main.doctor_group_attendance_details_fragment.*
 import org.koin.android.ext.android.get
 
+
 class DoctorGroupAttendanceDetails : Fragment() {
 
     private lateinit var viewModel: DoctorGroupAttendanceDetailsViewModel
+
+    private lateinit var GroupId : String
+
+    private lateinit var AttendanceId : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +44,9 @@ class DoctorGroupAttendanceDetails : Fragment() {
 
         val groupId  = arguments?.getString("gpid")
         val attendanceId  = arguments?.getString("atncid")
+
+        GroupId = groupId!!
+        AttendanceId = attendanceId!!
 
         val factory = get<DoctorGroupAttendanceDetailsViewModelFactory>()
 
@@ -92,6 +104,13 @@ class DoctorGroupAttendanceDetails : Fragment() {
                 else -> false
             }
         }
+
+        doctor_Attendance_details_floating_action_button.setOnClickListener {
+
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+            startActivityForResult(intent , 0)
+        }
     }
 
     fun ProgressBarVISIBLE(){
@@ -111,5 +130,29 @@ class DoctorGroupAttendanceDetails : Fragment() {
     fun RecyclerViewGONE()
     {
         doctor_Attendance_details_recyclerView.visibility = View.GONE
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        val photo = data?.extras?.get("data") as Bitmap
+
+        val uri =
+            getImageUri(context!!, photo)
+
+        Log.e("uri" , uri.toString())
+        viewModel.MakeStudentAttendance(uri!! ,GroupId , AttendanceId)
+
+    }
+
+    fun getImageUri(inContext: Context, inImage: Bitmap?): Uri? {
+        val OutImage = Bitmap.createScaledBitmap(inImage, 1000, 1000, true)
+        val path = Images.Media.insertImage(
+            inContext.contentResolver,
+            OutImage,
+            "Title",
+            null
+        )
+        return Uri.parse(path)
     }
 }

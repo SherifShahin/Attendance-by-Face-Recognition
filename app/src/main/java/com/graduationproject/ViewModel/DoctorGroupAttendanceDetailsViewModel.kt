@@ -1,6 +1,7 @@
 package com.graduationproject.ViewModel
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.graduationproject.Model.DoctorStudentsSearchResponse
@@ -27,5 +28,10 @@ class DoctorGroupAttendanceDetailsViewModel (application: Application) : Android
     fun getAttendees(groupId : String , attendanceId : String) = repository.getAttendees(groupId , attendanceId)
 
     fun getrequestResult() : LiveData<String> = requestResult
+
+    fun MakeStudentAttendance(imageuri : Uri, groupId: String , attendanceId: String)
+    {
+        repository.MakeStudentAttendance(imageuri , groupId , attendanceId)
+    }
 
 }

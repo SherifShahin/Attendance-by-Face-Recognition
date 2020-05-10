@@ -42,11 +42,8 @@ class ModeratorHome : Fragment() {
         model.getallStudents().observe(viewLifecycleOwner , Observer {
             it?.let {
 
-                if(!it.isEmpty())
-                {
-                    progressBar.visibility = View.GONE
-                    moderatorallstudentrecycleview.visibility = View.VISIBLE
-                }
+                progressBar.visibility = View.GONE
+                moderatorallstudentrecycleview.visibility = View.VISIBLE
 
                 val adapter = ModeratorAllStudentAdapter(it)
 

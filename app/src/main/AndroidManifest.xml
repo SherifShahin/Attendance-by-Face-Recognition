@@ -28,6 +28,10 @@
             android:process=":hello"
             android:name=".Service.SendVideoService" />
 
+        <service android:enabled="true"
+            android:process=":hello"
+            android:name=".Service.StudentAttendanceService" />
+
     </application>
 
 </manifest>
