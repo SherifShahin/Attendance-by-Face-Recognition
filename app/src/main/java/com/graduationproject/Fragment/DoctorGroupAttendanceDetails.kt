@@ -135,14 +135,15 @@ class DoctorGroupAttendanceDetails : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        val photo = data?.extras?.get("data") as Bitmap
+        try {
+            val photo = data?.extras?.get("data") as Bitmap
 
-        val uri =
-            getImageUri(context!!, photo)
+            val uri =
+                getImageUri(context!!, photo)
 
-        Log.e("uri" , uri.toString())
-        viewModel.MakeStudentAttendance(uri!! ,GroupId , AttendanceId)
-
+            Log.e("uri", uri.toString())
+            viewModel.MakeStudentAttendance(uri!!, GroupId, AttendanceId)
+        }catch (e : Exception) {}
     }
 
     fun getImageUri(inContext: Context, inImage: Bitmap?): Uri? {

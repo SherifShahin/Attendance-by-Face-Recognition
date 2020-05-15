@@ -9,13 +9,18 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.graduationproject.Adapter.DoctorGroupsAdapter
+import com.graduationproject.Dao.Dao
 
 import com.graduationproject.R
 import com.graduationproject.ViewModel.DoctorHomeViewModel
 import com.graduationproject.ViewModelFactory.DoctorHomeViewModelFactory
 import kotlinx.android.synthetic.main.fragment_doctor_home.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
 /**
@@ -62,6 +67,12 @@ class DoctorHome : Fragment() {
                     GoToAddDestination()
                     true
                 }
+
+                R.id.doctor_logout ->{
+                    Logout()
+                    true
+                }
+
                 else -> false
             }
         }
@@ -75,5 +86,18 @@ class DoctorHome : Fragment() {
         findNavController(this).navigate(action)
     }
 
+    private fun Logout() {
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            val dao = get<Dao>()
+
+            dao.DeleteUser()
+
+            val action = DoctorHomeDirections.DoctorToLoginDestination()
+
+            findNavController().navigate(action)
+        }
+    }
 
 }

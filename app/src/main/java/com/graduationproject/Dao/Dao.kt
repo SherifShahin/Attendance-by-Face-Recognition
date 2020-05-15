@@ -9,6 +9,7 @@ import com.graduationproject.DatabaseModel.DoctorGroups
 import com.graduationproject.DatabaseModel.DoctorGroupsStudentsRelation
 import com.graduationproject.DatabaseModel.DoctorStudents
 import com.graduationproject.DatabaseModel.User
+import retrofit2.http.DELETE
 
 
 @Dao
@@ -20,6 +21,9 @@ interface Dao
 
     @Query("SELECT * FROM user")
     fun getUser() : User
+
+    @Query("DELETE FROM USER")
+    fun DeleteUser()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun setDoctorGroup(group : DoctorGroups)

@@ -2,14 +2,12 @@ package com.graduationproject.Data
 
 import com.graduationproject.Model.*
 import okhttp3.MultipartBody
-import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import java.util.concurrent.TimeUnit
 
 interface Api
 {
@@ -119,14 +117,9 @@ interface Api
 
     companion object  {
         operator fun invoke() : Api{
-            val okHttpClient = OkHttpClient.Builder()
-                .callTimeout(120, TimeUnit.SECONDS)
-                .build()
-
             return  Retrofit.Builder()
-                .baseUrl("https://xayden-492fcdeb.localhost.run/api/")
+                .baseUrl("https://face-recognition-gp.herokuapp.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
                 .build()
                 .create(Api::class.java)
         }

@@ -10,5 +10,9 @@
         app:showAsAction="ifRoom"
         />
 
+    <item
+        android:id="@+id/doctor_logout"
+        android:title="Logout"
+        />
 
 </menu>

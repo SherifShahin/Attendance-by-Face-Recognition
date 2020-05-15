@@ -8,13 +8,18 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.graduationproject.Adapter.ModeratorAllStudentAdapter
+import com.graduationproject.Dao.Dao
 
 import com.graduationproject.R
 import com.graduationproject.ViewModel.ModeratorHomeViewModel
 import com.graduationproject.ViewModelFactory.ModeratorHomeViewModelFactory
 import kotlinx.android.synthetic.main.fragment_moderator_home.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
 
@@ -66,8 +71,27 @@ class ModeratorHome : Fragment() {
                     true
                 }
 
+                R.id.moderator_logout ->{
+                    Logout()
+                    true
+                }
+
                 else -> false
             }
+        }
+    }
+
+    private fun Logout() {
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            val dao = get<Dao>()
+
+            dao.DeleteUser()
+
+            val action = ModeratorHomeDirections.ModeratorToLoginDestination()
+
+            findNavController().navigate(action)
         }
     }
 

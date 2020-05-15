@@ -45,6 +45,12 @@
         <action
             android:id="@+id/doctorAddGroupDestination"
             app:destination="@id/doctorAddGroup" />
+        <action
+            android:id="@+id/DoctorToLoginDestination"
+            app:destination="@id/login"
+            app:popUpTo="@+id/mobile_navigation"
+            app:popUpToInclusive="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/moderatorHome"
@@ -54,6 +60,12 @@
         <action
             android:id="@+id/moderatorSetStudentDestination"
             app:destination="@id/moderatorSetStudent" />
+        <action
+            android:id="@+id/ModeratorToLoginDestination"
+            app:destination="@id/login"
+            app:popUpTo="@+id/mobile_navigation"
+            app:popUpToInclusive="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/doctorGroupStudents"
